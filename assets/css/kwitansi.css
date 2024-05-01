@@ -1,0 +1,384 @@
+.stl_ sup {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em;
+}
+.stl_ sub {
+    vertical-align: baseline;
+    position: relative;
+    top: 0.4em;
+}
+.stl_ a:link {text-decoration:none;}
+.stl_ a:visited {text-decoration:none;}
+@media screen and (min-device-pixel-ratio:0), (-webkit-min-device-pixel-ratio:0), (min--moz-device-pixel-ratio: 0) {.stl_view{ font-size:10em; transform:scale(0.1); -moz-transform:scale(0.1); -webkit-transform:scale(0.1); -moz-transform-origin:top left; -webkit-transform-origin:top left; } }
+.stl_ie body { font-size: 12em; }
+@media print{.stl_view {font-size:1em; transform:scale(1);}}
+.stl_01 {
+    /*position: relative;*/
+    /*white-space: nowrap;*/
+}
+
+@supports(-ms-ime-align:auto) { }
+
+.stl_07 {
+    font-size: 0.692em;
+    font-family: "BKTQRR+Calibri", "Times New Roman";
+    color: #000000;
+}
+.stl_08 {
+    line-height: 1.220703em;
+}
+.stl_09 {
+    letter-spacing: 0.0023em;
+}
+
+.stl_ie .stl_09 {
+    letter-spacing: 0.0253px;
+}
+.stl_10 {
+    font-size: 1.002em;
+    font-family: "SDULHV+Arial";
+    color: #000000;
+}
+.stl_11 {
+    line-height: 1.117188em;
+}
+.stl_12 {
+    letter-spacing: 0em;
+}
+
+.stl_ie .stl_12 {
+    letter-spacing: 0px;
+}
+.stl_13 {
+    font-size: 0.75em;
+    font-family: "SDULHV+Arial";
+    color: #000000;
+}
+.stl_14 {
+    font-size: 0.692em;
+    font-family: "SDULHV+Arial";
+    color: #000000;
+}
+.stl_15 {
+    letter-spacing: -0.0046em;
+}
+
+.stl_ie .stl_15 {
+    letter-spacing: -0.0504px;
+}
+.stl_16 {
+    letter-spacing: -0.0044em;
+}
+
+.stl_ie .stl_16 {
+    letter-spacing: -0.049px;
+}
+.stl_17 {
+    letter-spacing: -0.007em;
+}
+
+.stl_ie .stl_17 {
+    letter-spacing: -0.0777px;
+}
+.stl_18 {
+    letter-spacing: -0.0057em;
+}
+
+.stl_ie .stl_18 {
+    letter-spacing: -0.0627px;
+}
+.stl_19 {
+    letter-spacing: -0.0051em;
+}
+
+.stl_ie .stl_19 {
+    letter-spacing: -0.056px;
+}
+.stl_20 {
+    font-size: 0.632em;
+    font-family: "SDULHV+Arial";
+    color: #000000;
+}
+.stl_21 {
+    letter-spacing: -0.0007em;
+}
+
+.stl_ie .stl_21 {
+    letter-spacing: -0.0072px;
+}
+.stl_22 {
+    letter-spacing: -0.0005em;
+}
+
+.stl_ie .stl_22 {
+    letter-spacing: -0.0048px;
+}
+.stl_23 {
+    letter-spacing: 0.0004em;
+}
+
+.stl_ie .stl_23 {
+    letter-spacing: 0.0043px;
+}
+.stl_24 {
+    letter-spacing: -0.0024em;
+}
+
+.stl_ie .stl_24 {
+    letter-spacing: -0.027px;
+}
+.stl_25 {
+    letter-spacing: -0.0056em;
+}
+
+.stl_ie .stl_25 {
+    letter-spacing: -0.0623px;
+}
+
+.stl_27 {
+    letter-spacing: -0.0033em;
+}
+
+.stl_ie .stl_27 {
+    letter-spacing: -0.0363px;
+}
+
+.stl_29 {
+    letter-spacing: -0.0061em;
+}
+
+.stl_ie .stl_29 {
+    letter-spacing: -0.0672px;
+}
+.stl_30 {
+    letter-spacing: 0.0933em;
+}
+
+.stl_ie .stl_30 {
+    letter-spacing: 1.1193px;
+}
+.stl_31 {
+    letter-spacing: -0.0055em;
+}
+
+.stl_ie .stl_31 {
+    letter-spacing: -0.0606px;
+}
+.stl_32 {
+    letter-spacing: -0.0065em;
+}
+
+.stl_ie .stl_32 {
+    letter-spacing: -0.0721px;
+}
+.stl_33 {
+    letter-spacing: -0.0069em;
+}
+
+.stl_ie .stl_33 {
+    letter-spacing: -0.0762px;
+}
+.stl_34 {
+    letter-spacing: -0.0052em;
+}
+
+.stl_ie .stl_34 {
+    letter-spacing: -0.0578px;
+}
+.stl_35 {
+    letter-spacing: -0.0064em;
+}
+
+.stl_ie .stl_35 {
+    letter-spacing: -0.0708px;
+}
+.stl_36 {
+    letter-spacing: 0.004em;
+}
+
+.stl_ie .stl_36 {
+    letter-spacing: 0.044px;
+}
+.stl_37 {
+    letter-spacing: -0.0062em;
+}
+
+.stl_ie .stl_37 {
+    letter-spacing: -0.0684px;
+}
+.stl_38 {
+    letter-spacing: 0.0014em;
+}
+
+.stl_ie .stl_38 {
+    letter-spacing: 0.0154px;
+}
+.stl_39 {
+    letter-spacing: -0.0075em;
+}
+
+.stl_ie .stl_39 {
+    letter-spacing: -0.0835px;
+}
+.stl_40 {
+    letter-spacing: -0.0047em;
+}
+
+.stl_ie .stl_40 {
+    letter-spacing: -0.052px;
+}
+.stl_41 {
+    letter-spacing: -0.0076em;
+}
+
+.stl_ie .stl_41 {
+    letter-spacing: -0.0846px;
+}
+.stl_42 {
+    letter-spacing: -0.0035em;
+}
+
+.stl_ie .stl_42 {
+    letter-spacing: -0.0393px;
+}
+.stl_43 {
+    letter-spacing: -0.0042em;
+}
+
+.stl_ie .stl_43 {
+    letter-spacing: -0.0469px;
+}
+.stl_44 {
+    letter-spacing: -0.0049em;
+}
+
+.stl_ie .stl_44 {
+    letter-spacing: -0.0541px;
+}
+.stl_45 {
+    letter-spacing: -0.0077em;
+}
+
+.stl_ie .stl_45 {
+    letter-spacing: -0.0854px;
+}
+.stl_46 {
+    letter-spacing: -0.005em;
+}
+
+.stl_ie .stl_46 {
+    letter-spacing: -0.0558px;
+}
+.stl_47 {
+    letter-spacing: -0.0022em;
+}
+
+.stl_ie .stl_47 {
+    letter-spacing: -0.0239px;
+}
+.stl_48 {
+    letter-spacing: -0.0023em;
+}
+
+.stl_ie .stl_48 {
+    letter-spacing: -0.0251px;
+}
+
+.stl_50 {
+    letter-spacing: -0.0029em;
+}
+
+.stl_ie .stl_50 {
+    letter-spacing: -0.0322px;
+}
+
+.stl_52 {
+    letter-spacing: -0.0041em;
+}
+
+.stl_ie .stl_52 {
+    letter-spacing: -0.0458px;
+}
+.stl_53 {
+    letter-spacing: -0.0018em;
+}
+
+.stl_ie .stl_53 {
+    letter-spacing: -0.02px;
+}
+.stl_54 {
+    letter-spacing: -0.0031em;
+}
+
+.stl_ie .stl_54 {
+    letter-spacing: -0.0344px;
+}
+.stl_55 {
+    letter-spacing: -0.0027em;
+}
+
+.stl_ie .stl_55 {
+    letter-spacing: -0.0302px;
+}
+
+.stl_57 {
+    letter-spacing: -0.0072em;
+}
+
+.stl_ie .stl_57 {
+    letter-spacing: -0.0792px;
+}
+.stl_58 {
+    letter-spacing: -0.0063em;
+}
+
+.stl_ie .stl_58 {
+    letter-spacing: -0.0696px;
+}
+
+.stl_60 {
+    letter-spacing: -0.0039em;
+}
+
+.stl_ie .stl_60 {
+    letter-spacing: -0.0431px;
+}
+
+.stl_63 {
+    letter-spacing: -0.0045em;
+}
+
+.stl_ie .stl_63 {
+    letter-spacing: -0.0495px;
+}
+.stl_64 {
+    letter-spacing: -0.0058em;
+}
+
+.stl_ie .stl_64 {
+    letter-spacing: -0.0647px;
+}
+
+.tbl-rincian-biaya {
+    width: 100%;
+    border: 1.5px solid black;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+.tbl-rincian-biaya th {
+    border: 1.5px solid black;
+    padding: 8px;
+    text-align: left;
+}
+.tbl-rincian-biaya td {
+    border-right: 1.5px solid black;
+    padding: 8px;
+    text-align: left;
+}
+.tbl-border td {
+    border: 1.5px solid black;
+}
+.tbl-rincian-biaya th {
+    text-align: center;
+}

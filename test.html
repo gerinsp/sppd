@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hitung Jumlah Hari</title>
+</head>
+<body>
+  <h1>Hitung Jumlah Hari</h1>
+
+  <form method="post" action="">
+    <label for="tanggal1">Tanggal Pertama:</label>
+    <input type="date" id="tanggal1" name="tanggal1" required>
+
+    <label for="tanggal2">Tanggal Kedua:</label>
+    <input type="date" id="tanggal2" name="tanggal2" required>
+
+    <button type="submit">Hitung</button>
+  </form>
+
+  <?php
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Ambil nilai dari form
+    $tanggal1 = $_POST["tanggal1"];
+    $tanggal2 = $_POST["tanggal2"];
+
+    // Hitung selisih hari
+    $selisih = hitungSelisihHari($tanggal1, $tanggal2);
+
+    // Tampilkan hasil
+    echo "<p>Jumlah hari antara $tanggal1 dan $tanggal2 adalah $selisih hari.</p>";
+  }
+
+  function hitungSelisihHari($tanggal1, $tanggal2) {
+    $date1 = new DateTime($tanggal1);
+    $date2 = new DateTime($tanggal2);
+    $interval = $date1->diff($date2);
+    return $interval->days;
+  }
+  ?>
+</body>
+</html>

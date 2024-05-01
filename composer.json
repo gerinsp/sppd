@@ -1,0 +1,11 @@
+{
+    "name": "sppd/sppd",
+    "autoload": {
+        "psr-4": {
+            "Lenovo\\Sppd\\": "src/"
+        }
+    },
+    "require": {
+        "mpdf/mpdf": "^8.2"
+    }
+}
