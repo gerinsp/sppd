@@ -473,6 +473,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                         class="btn btn-primary"
                         data-bs-toggle="modal"
                         data-bs-target="#editkategori<?= $isi['idkwitansi']; ?>"
+                        onclick="resetHarga()"
                       >
                         Edit
                       </button>
@@ -540,14 +541,14 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                   </div>
                                   <label class="col-1 col-form-label" for="basic-default-name">Satuan</label>
                                   <div class="col-sm-2">
-                                    <input type="text" name="satuanharian" id="satuanharian" class="form-control" placeholder="370.000" value="<?= $isi['satuanharian']; ?>" />
+                                    <input type="number" name="satuanharian" id="satuanharian" class="form-control" placeholder="370.000" value="<?= $isi['satuanharian']; ?>" />
                                   </div>
                                 </div>
                                 <!-- Kendaraan Harian                                 -->
                                 <div class="row mb-4">
                                   <label class="col-sm-2 col-form-label" for="basic-default-name">Transport</label>
                                   <div class="col-sm-2">
-                                  <select name="transport" onchange="setTransport(this)" type="text" class="form-select"
+                                  <select name="transport" onchange="setTransport(this, 'kend-dinas-wrapper-<?= $isi['idkwitansi'] ?>', 'transport-wrapper-<?= $isi['idkwitansi'] ?>')" type="text" class="form-select"
                                       id="autocompleteSelect" aria-label="Default select example" >
                                       <?php if($isi['transport'] == 'umum') { ?>
                                       <option value="umum" selected>Kendaraan Umum</option>
@@ -570,7 +571,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                 </div>
 
                                   <!-- Tiket Transport -->
-                                  <div id="transport-wrapper">
+                                  <div id="transport-wrapper-<?= $isi['idkwitansi'] ?>">
                                       <div class="row mb-3">
                                           <label class="col-sm-2 col-form-label" for="basic-default-name">Transport 1</label>
                                           <div class="col-sm-2">
@@ -578,7 +579,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                           </div>
                                           <label class="col-1 col-form-label" for="basic-default-name">Satuan</label>
                                           <div class="col-sm-2">
-                                              <input type="text" name="satuan1" id="satuan1"  class="form-control" placeholder="120.000" value="<?= $isi['satuan1']; ?>" />
+                                              <input type="number" name="satuan1" id="satuan1"  class="form-control" placeholder="120.000" value="<?= $isi['satuan1']; ?>" />
                                           </div>
                                           <label class="col-sm-1 col-form-label" for="basic-default-name">Ket</label>
                                           <div class="col-sm-3">
@@ -592,7 +593,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                           </div>
                                           <label class="col-1 col-form-label" for="basic-default-name">Satuan</label>
                                           <div class="col-sm-2">
-                                              <input type="text" name="satuan2" id="satuan2"  class="form-control" placeholder="120.000" value="<?= $isi['satuan2']; ?>" />
+                                              <input type="number" name="satuan2" id="satuan2"  class="form-control" placeholder="120.000" value="<?= $isi['satuan2']; ?>" />
                                           </div>
                                           <label class="col-sm-1 col-form-label" for="basic-default-name">Ket</label>
                                           <div class="col-sm-3">
@@ -606,7 +607,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                           </div>
                                           <label class="col-1 col-form-label" for="basic-default-name">Satuan</label>
                                           <div class="col-sm-2">
-                                              <input type="text" name="satuan3" id="satuan3"  class="form-control" placeholder="120.000" value="<?= $isi['satuan3']; ?>" />
+                                              <input type="number" name="satuan3" id="satuan3"  class="form-control" placeholder="120.000" value="<?= $isi['satuan3']; ?>" />
                                           </div>
                                           <label class="col-sm-1 col-form-label" for="basic-default-name">Ket</label>
                                           <div class="col-sm-3">
@@ -620,7 +621,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                           </div>
                                           <label class="col-1 col-form-label" for="basic-default-name">Satuan</label>
                                           <div class="col-sm-2">
-                                              <input type="text" name="satuan4" id="satuan4"  class="form-control" placeholder="120.000" value="<?= $isi['satuan4']; ?>" />
+                                              <input type="number" name="satuan4" id="satuan4"  class="form-control" placeholder="120.000" value="<?= $isi['satuan4']; ?>" />
                                           </div>
                                           <label class="col-sm-1 col-form-label" for="basic-default-name">Ket</label>
                                           <div class="col-sm-3">
@@ -634,7 +635,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                           </div>
                                           <label class="col-1 col-form-label" for="basic-default-name">Satuan</label>
                                           <div class="col-sm-2">
-                                              <input type="text" name="satuan5" id="satuan5"  class="form-control" placeholder="120.000" value="<?= $isi['satuan5']; ?>" />
+                                              <input type="number" name="satuan5" id="satuan5"  class="form-control" placeholder="120.000" value="<?= $isi['satuan5']; ?>" />
                                           </div>
                                           <label class="col-sm-1 col-form-label" for="basic-default-name">Ket</label>
                                           <div class="col-sm-3">
@@ -644,7 +645,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                   </div>
                                  <!-- akhir tiket transport -->
                                  <!-- Kendaraan Dinas -->
-                                 <div class="row mb-3" id="kend-dinas-wrapper">
+                                 <div class="row mb-3 kend-dinas" id="kend-dinas-wrapper-<?= $isi['idkwitansi'] ?>">
                                   <label class="col-sm-2 col-form-label" for="basic-default-name">Kendaraan Dinas</label>
                                   <div class="col-sm-4">
                                     <input type="text" name="keteranganbbm" id="keteranganbbm"  class="form-control" placeholder="Mobil Dinas BH XXX BBM Pertamax/Pertalite" value="<?= $isi['keteranganbbm']; ?>" />
@@ -655,7 +656,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                   </div>
                                   <label class="col-sm-1 col-form-label" for="basic-default-name">Harga</label>
                                   <div class="col-sm-2">
-                                    <input type="text" name="hargaliter" id="hargaliter"  class="form-control" placeholder="14.500" value="<?= $isi['hargaliter']; ?>" />
+                                    <input type="number" name="hargaliter" id="hargaliter"  class="form-control" placeholder="14.500" value="<?= $isi['hargaliter']; ?>" />
                                   </div>
                                 </div>
                                  <!-- Akhir Kendaraan Dinas -->
@@ -671,7 +672,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                   </div>
                                   <label class="col-sm-1 col-form-label" for="basic-default-name">Harga</label>
                                   <div class="col-sm-2">
-                                    <input type="text" oninput="setHarga(this, '1')" name="hargapen1" id="hargapen1" class="form-control" placeholder="14.500" value="<?= $isi['hargapen1']; ?>" />
+                                    <input type="number" oninput="setHarga(this, '1')" name="hargapen1" id="hargapen1-<?= $isi['idkwitansi'] ?>" class="form-control" placeholder="14.500" value="<?= $isi['hargapen1']; ?>" />
                                   </div>
                                 </div>
                                 <div class="row">
@@ -686,9 +687,9 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                     <div class="col-md-1">
                                         <div class="form-check">
                                             <?php if ($isi['addon1'] == 'ya') { ?>
-                                                <input onclick="hitungHarga('hargapen1', '1', '1')" class="form-check-input" type="radio" name="addon1" id="flexRadioGroup1Option1" value="ya" checked>
+                                                <input onclick="hitungHarga('hargapen1-<?= $isi['idkwitansi'] ?>', '1', '1')" class="form-check-input" type="radio" name="addon1" id="flexRadioGroup1Option1" value="ya" checked>
                                             <?php } else { ?>
-                                                <input onclick="hitungHarga('hargapen1', '1', '1')" class="form-check-input" type="radio" name="addon1" id="flexRadioGroup1Option1" value="ya">
+                                                <input onclick="hitungHarga('hargapen1-<?= $isi['idkwitansi'] ?>', '1', '1')" class="form-check-input" type="radio" name="addon1" id="flexRadioGroup1Option1" value="ya">
                                             <?php } ?>
                                             <label class="form-check-label" for="flexRadioGroup1Option1">
                                                 30%
@@ -698,9 +699,9 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                     <div class="col-md-2">
                                         <div class="form-check">
                                             <?php if ($isi['addon1'] == 'tidak') { ?>
-                                                <input onclick="hitungHarga('hargapen1', '2', '1')" class="form-check-input" type="radio" name="addon1" id="flexRadioGroup1Option2" value="tidak" checked>
+                                                <input onclick="hitungHarga('hargapen1-<?= $isi['idkwitansi'] ?>', '2', '1')" class="form-check-input" type="radio" name="addon1" id="flexRadioGroup1Option2" value="tidak" checked>
                                             <?php } else { ?>
-                                                <input onclick="hitungHarga('hargapen1', '2', '1')" class="form-check-input" type="radio" name="addon1" id="flexRadioGroup1Option2" value="tidak">
+                                                <input onclick="hitungHarga('hargapen1-<?= $isi['idkwitansi'] ?>', '2', '1')" class="form-check-input" type="radio" name="addon1" id="flexRadioGroup1Option2" value="tidak">
                                             <?php } ?>
                                             <label class="form-check-label" for="flexRadioGroup1Option2">
                                                 Non 30%
@@ -721,7 +722,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                   </div>
                                   <label class="col-sm-1 col-form-label" for="basic-default-name">Harga</label>
                                   <div class="col-sm-2">
-                                    <input type="text" oninput="setHarga(this, '2')" name="hargapen2" id="hargapen2" class="form-control" placeholder="14.500" value="<?= $isi['hargapen2']; ?>" />
+                                    <input type="number" oninput="setHarga(this, '2')" name="hargapen2" id="hargapen2-<?= $isi['idkwitansi'] ?>" class="form-control" placeholder="14.500" value="<?= $isi['hargapen2']; ?>" />
                                   </div>
                                 </div>
                                   <div class="row">
@@ -736,9 +737,9 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                       <div class="col-md-1">
                                           <div class="form-check">
                                               <?php if($isi['addon2'] == 'ya') { ?>
-                                                <input onclick="hitungHarga('hargapen2', '1', '2')" class="form-check-input" type="radio" name="addon2" id="flexRadioGroup2Option1" value="ya" checked>
+                                                <input onclick="hitungHarga('hargapen2-<?= $isi['idkwitansi'] ?>', '1', '2')" class="form-check-input" type="radio" name="addon2" id="flexRadioGroup2Option1" value="ya" checked>
                                               <?php } else { ?>
-                                                <input onclick="hitungHarga('hargapen2', '1', '2')" class="form-check-input" type="radio" name="addon2" id="flexRadioGroup2Option1" value="ya">
+                                                <input onclick="hitungHarga('hargapen2-<?= $isi['idkwitansi'] ?>', '1', '2')" class="form-check-input" type="radio" name="addon2" id="flexRadioGroup2Option1" value="ya">
                                               <?php } ?>
                                               <label class="form-check-label" for="flexRadioGroup2Option1">
                                                   30%
@@ -748,9 +749,9 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                       <div class="col-md-2">
                                           <div class="form-check">
                                               <?php if ($isi['addon2'] == 'tidak') { ?>
-                                                <input onclick="hitungHarga('hargapen2', '2', '2')" class="form-check-input" type="radio" name="addon2" id="flexRadioGroup2Option2" value="tidak" checked>
+                                                <input onclick="hitungHarga('hargapen2-<?= $isi['idkwitansi'] ?>', '2', '2')" class="form-check-input" type="radio" name="addon2" id="flexRadioGroup2Option2" value="tidak" checked>
                                               <?php } else { ?>
-                                                <input onclick="hitungHarga('hargapen2', '2', '2')" class="form-check-input" type="radio" name="addon2" id="flexRadioGroup2Option2" value="tidak">
+                                                <input onclick="hitungHarga('hargapen2-<?= $isi['idkwitansi'] ?>', '2', '2')" class="form-check-input" type="radio" name="addon2" id="flexRadioGroup2Option2" value="tidak">
                                               <?php } ?>
                                               <label class="form-check-label" for="flexRadioGroup2Option2">
                                                   Non 30%
@@ -974,11 +975,14 @@ while ($isi = mysqli_fetch_array($panggildata)) {
     <!-- <script type="text/javascript" src="js/script.js"></script> -->
 
     <script>
-        const kendUmum = document.getElementById('transport-wrapper')
-        const kendDinas = document.getElementById('kend-dinas-wrapper')
+        const dinas = document.querySelectorAll('.kend-dinas');
+        dinas.forEach(item => {
+            item.style.display = 'none';
+        });
+        function setTransport(target_el, dinas, umum) {
+            const kendUmum = document.getElementById(umum)
+            const kendDinas = document.getElementById(dinas)
 
-        kendDinas.style.display = 'none'
-        function setTransport(target_el) {
             if (target_el.value == 'dinas') {
                 kendDinas.style.display = 'flex'
                 kendUmum.style.display = 'none'
@@ -1019,6 +1023,10 @@ while ($isi = mysqli_fetch_array($panggildata)) {
             if (group == 2) {
                 hargaAwal2 = harga.value
             }
+        }
+        function resetHarga() {
+            hargaAwal1 = undefined
+            hargaAwal2 = undefined
         }
         // const btnSimpan = document.getElementById('simpan')
         // btnSimpan.addEventListener('click', () => window.open('generate_kwitansi.php', '_blank'))

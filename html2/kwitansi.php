@@ -420,7 +420,7 @@ if (mysqli_num_rows($result) > 0) {
                           </div>
                           <label class="col-1 col-form-label" for="basic-default-name">Satuan</label>
                           <div class="col-sm-2">
-                            <input type="text" name="satuanharian" id="satuanharian" class="form-control" placeholder="370.000" />
+                            <input type="number" name="satuanharian" id="satuanharian" class="form-control" placeholder="370.000" />
                           </div>
                         </div>
                         <!-- Kendaraan Harian                                 -->
@@ -450,7 +450,7 @@ if (mysqli_num_rows($result) > 0) {
                                   </div>
                                   <label class="col-1 col-form-label" for="basic-default-name">Satuan</label>
                                   <div class="col-sm-2">
-                                      <input type="text" name="satuan1" id="satuan1"  class="form-control" placeholder="120.000" />
+                                      <input type="number" name="satuan1" id="satuan1"  class="form-control" placeholder="120.000" />
                                   </div>
                                   <label class="col-sm-1 col-form-label" for="basic-default-name">Ket</label>
                                   <div class="col-sm-3">
@@ -464,7 +464,7 @@ if (mysqli_num_rows($result) > 0) {
                                   </div>
                                   <label class="col-1 col-form-label" for="basic-default-name">Satuan</label>
                                   <div class="col-sm-2">
-                                      <input type="text" name="satuan2" id="satuan2"  class="form-control" placeholder="120.000" />
+                                      <input type="number" name="satuan2" id="satuan2"  class="form-control" placeholder="120.000" />
                                   </div>
                                   <label class="col-sm-1 col-form-label" for="basic-default-name">Ket</label>
                                   <div class="col-sm-3">
@@ -478,7 +478,7 @@ if (mysqli_num_rows($result) > 0) {
                                   </div>
                                   <label class="col-1 col-form-label" for="basic-default-name">Satuan</label>
                                   <div class="col-sm-2">
-                                      <input type="text" name="satuan3" id="satuan3"  class="form-control" placeholder="120.000" />
+                                      <input type="number" name="satuan3" id="satuan3"  class="form-control" placeholder="120.000" />
                                   </div>
                                   <label class="col-sm-1 col-form-label" for="basic-default-name">Ket</label>
                                   <div class="col-sm-3">
@@ -492,7 +492,7 @@ if (mysqli_num_rows($result) > 0) {
                                   </div>
                                   <label class="col-1 col-form-label" for="basic-default-name">Satuan</label>
                                   <div class="col-sm-2">
-                                      <input type="text" name="satuan4" id="satuan4"  class="form-control" placeholder="120.000" />
+                                      <input type="number" name="satuan4" id="satuan4"  class="form-control" placeholder="120.000" />
                                   </div>
                                   <label class="col-sm-1 col-form-label" for="basic-default-name">Ket</label>
                                   <div class="col-sm-3">
@@ -506,7 +506,7 @@ if (mysqli_num_rows($result) > 0) {
                                   </div>
                                   <label class="col-1 col-form-label" for="basic-default-name">Satuan</label>
                                   <div class="col-sm-2">
-                                      <input type="text" name="satuan5" id="satuan5"  class="form-control" placeholder="120.000" />
+                                      <input type="number" name="satuan5" id="satuan5"  class="form-control" placeholder="120.000" />
                                   </div>
                                   <label class="col-sm-1 col-form-label" for="basic-default-name">Ket</label>
                                   <div class="col-sm-3">
@@ -527,7 +527,7 @@ if (mysqli_num_rows($result) > 0) {
                           </div>
                           <label class="col-sm-1 col-form-label" for="basic-default-name">Harga</label>
                           <div class="col-sm-2">
-                            <input type="text" name="hargaliter" id="hargaliter"  class="form-control" placeholder="14.500" />
+                            <input type="number" name="hargaliter" id="hargaliter"  class="form-control" placeholder="14.500" />
                           </div>
                         </div>
                          <!-- Akhir Kendaraan Dinas --> 
@@ -543,7 +543,7 @@ if (mysqli_num_rows($result) > 0) {
                           </div>
                           <label class="col-sm-1 col-form-label" for="basic-default-name">Harga</label>
                           <div class="col-sm-2">
-                            <input type="text" oninput="setHarga(this, '1')" name="hargapen1" id="hargapen1" class="form-control" placeholder="14.500" />
+                            <input type="number" oninput="setHarga(this, '1')" name="hargapen1" id="hargapen1" class="form-control" placeholder="14.500" />
                           </div>
                         </div>
                         <div class="row">
@@ -565,7 +565,7 @@ if (mysqli_num_rows($result) > 0) {
                             </div>
                             <div class="col-md-2">
                                 <div class="form-check">
-                                    <input onclick="hitungHarga('hargapen1', '2', '1')" class="form-check-input" type="radio" name="addon1" id="flexRadioGroup1Option2" value="tidak">
+                                    <input onclick="hitungHarga('hargapen1', '2', '1')" class="form-check-input" type="radio" name="addon1" id="flexRadioGroup1Option2" value="tidak" checked>
                                     <label class="form-check-label" for="flexRadioGroup1Option2">
                                         Non 30%
                                     </label>
@@ -585,7 +585,7 @@ if (mysqli_num_rows($result) > 0) {
                           </div>
                           <label class="col-sm-1 col-form-label" for="basic-default-name">Harga</label>
                           <div class="col-sm-2">
-                            <input type="text" oninput="setHarga(this, '2')" name="hargapen2" id="hargapen2" class="form-control" placeholder="14.500" />
+                            <input type="number" oninput="setHarga(this, '2')" name="hargapen2" id="hargapen2" class="form-control" placeholder="14.500" />
                           </div>
                         </div>
                           <div class="row">
@@ -607,7 +607,7 @@ if (mysqli_num_rows($result) > 0) {
                               </div>
                               <div class="col-md-2">
                                   <div class="form-check">
-                                      <input onclick="hitungHarga('hargapen2', '2', '2')" class="form-check-input" type="radio" name="addon2" id="flexRadioGroup2Option2" value="tidak">
+                                      <input onclick="hitungHarga('hargapen2', '2', '2')" class="form-check-input" type="radio" name="addon2" id="flexRadioGroup2Option2" value="tidak" checked>
                                       <label class="form-check-label" for="flexRadioGroup2Option2">
                                           Non 30%
                                       </label>

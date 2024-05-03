@@ -103,16 +103,58 @@ if ($_GET['idkwitansi']) {
             $jumlah += $row['hargaliter'];
         }
 
+        $penginapan = '';
+        $harga_penginapan = 0;
+        if ($row['satuanpen1'] != '' || $row['hargapen1'] != '' || $row['ketpen1'] != '' || $row['hotel1'] != '') {
+            $penginapan .= '
+                <tr>
+                    <td></td>
+                    <td><div class="stl_01" style="margin-left:7.882em;top:58.7919em;"><span class="stl_14 stl_11 stl_12">'.$row['satuanpen1'].' Malam '.$addon1.'</span></div>
+                    </td>
+                    <td><div class="stl_01" style="margin-left:27.8658em;top:58.7719em;"><span class="stl_14 stl_11 stl_35" style="word-spacing:0.7975em;">'.formatNumber($row['hargapen1']).' &nbsp;</span></div>
+                    </td>
+                    <td><div class="stl_01" style="margin-left:27.8658em;top:58.7719em;"><span class="stl_14 stl_11 stl_35" style="word-spacing:0.7975em;">'.$row['ketpen1'].' &nbsp;</span></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><div class="stl_01" style="margin-left:6.702em;top:59.6819em;"><span class="stl_14 stl_11 stl_34" style="word-spacing:0.0009em;">'.$row['hotel1'].' &nbsp;</span></div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            ';
+            $harga_penginapan += $row['hargapen1'];
+        }
+        if ($row['satuanpen2'] != '' || $row['hargapen2'] != '' || $row['ketpen2'] != '' || $row['hotel2'] != '') {
+            $penginapan .= '
+                <tr>
+                    <td></td>
+                    <td><div class="stl_01" style="margin-left:7.882em;top:58.7919em;"><span class="stl_14 stl_11 stl_12">'.$row['satuanpen2'].' Malam '.$addon2.'</span></div>
+                    </td>
+                    <td><div class="stl_01" style="margin-left:27.8658em;top:58.7719em;"><span class="stl_14 stl_11 stl_35" style="word-spacing:0.7975em;">'.formatNumber($row['hargapen2']).' &nbsp;</span></div>
+                    </td>
+                    <td><div class="stl_01" style="margin-left:27.8658em;top:58.7719em;"><span class="stl_14 stl_11 stl_35" style="word-spacing:0.7975em;">'.$row['ketpen2'].' &nbsp;</span></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><div class="stl_01" style="margin-left:6.702em;top:59.6819em;"><span class="stl_14 stl_11 stl_34" style="word-spacing:0.0009em;">'.$row['hotel2'].' &nbsp;</span></div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            ';
+            $harga_penginapan += $row['hargapen2'];
+        }
+
         $harian = isset($row['harian']) ? intval($row['harian']) : 0;
         $satuanharian = isset($row['satuanharian']) ? intval($row['satuanharian']) : 0;
 
         $jmlHarian = $harian * $satuanharian;
-        $hargaPen1 = isset($row['hargapen1']) ? intval($row['hargapen1']) : 0;
-        $hargaPen2 = isset($row['hargapen2']) ? intval($row['hargapen2']) : 0;
 
         $jumlah += $jmlHarian;
-        $jumlah += $hargaPen1;
-        $jumlah += $hargaPen2;
+        $jumlah += $harga_penginapan;
 
         $addon1 = $row['addon1'] == 'ya' ? 'x 30%' : '';
         $addon2 = $row['addon2'] == 'ya' ? 'x 30%' : '';
@@ -305,38 +347,7 @@ if ($_GET['idkwitansi']) {
                 <td></td>
                 <td></td>
             </tr>
-            <tr>
-                <td></td>
-                <td><div class="stl_01" style="margin-left:7.882em;top:58.7919em;"><span class="stl_14 stl_11 stl_12">'.$row['satuanpen1'].' Malam '.$addon1.'</span></div>
-                </td>
-                <td><div class="stl_01" style="margin-left:27.8658em;top:58.7719em;"><span class="stl_14 stl_11 stl_35" style="word-spacing:0.7975em;">'.formatNumber($row['hargapen1']).' &nbsp;</span></div>
-                </td>
-                <td><div class="stl_01" style="margin-left:27.8658em;top:58.7719em;"><span class="stl_14 stl_11 stl_35" style="word-spacing:0.7975em;">'.$row['ketpen1'].' &nbsp;</span></div>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><div class="stl_01" style="margin-left:6.702em;top:59.6819em;"><span class="stl_14 stl_11 stl_34" style="word-spacing:0.0009em;">'.$row['hotel1'].' &nbsp;</span></div>
-                </td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><div class="stl_01" style="margin-left:7.882em;top:58.7919em;"><span class="stl_14 stl_11 stl_12">'.$row['satuanpen2'].' Malam '.$addon2.'</span></div>
-                </td>
-                <td><div class="stl_01" style="margin-left:27.8658em;top:58.7719em;"><span class="stl_14 stl_11 stl_35" style="word-spacing:0.7975em;">'.formatNumber($row['hargapen2']).' &nbsp;</span></div>
-                </td>
-                <td><div class="stl_01" style="margin-left:27.8658em;top:58.7719em;"><span class="stl_14 stl_11 stl_35" style="word-spacing:0.7975em;">'.$row['ketpen2'].' &nbsp;</span></div>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><div class="stl_01" style="margin-left:6.702em;top:59.6819em;"><span class="stl_14 stl_11 stl_34" style="word-spacing:0.0009em;">'.$row['hotel2'].' &nbsp;</span></div>
-                </td>
-                <td></td>
-                <td></td>
-            </tr>
+            '.$penginapan.'
             <tr class="tbl-border">
                 <td colspan="2"><div class="stl_01" style="text-align: center"><span class="stl_14 stl_11 stl_48">JUMLAH &nbsp;</span></div>
                 </td>

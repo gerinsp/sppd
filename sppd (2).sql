@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 01, 2024 at 05:32 PM
+-- Generation Time: May 03, 2024 at 07:12 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.6
 
@@ -29,12 +29,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `data_pegawai` (
   `idpegawai` int NOT NULL,
-  `nama` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `nip` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `pangkat` varchar(25) COLLATE utf8mb4_general_ci NOT NULL,
-  `jabatan` varchar(60) COLLATE utf8mb4_general_ci NOT NULL,
-  `bidang` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
-  `instansi` varchar(60) COLLATE utf8mb4_general_ci NOT NULL
+  `nama` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nip` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `pangkat` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `jabatan` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `bidang` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `instansi` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -67,7 +67,7 @@ INSERT INTO `data_pegawai` (`idpegawai`, `nama`, `nip`, `pangkat`, `jabatan`, `b
 CREATE TABLE `kegiatan` (
   `idkegiatan` int NOT NULL,
   `norek` int NOT NULL,
-  `namakegiatan` varchar(300) COLLATE utf8mb4_general_ci NOT NULL
+  `namakegiatan` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -90,45 +90,45 @@ INSERT INTO `kegiatan` (`idkegiatan`, `norek`, `namakegiatan`) VALUES
 
 CREATE TABLE `kwitansi` (
   `idkwitansi` int NOT NULL,
-  `nosppd` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `tanggalspd` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
-  `tanggalkwt` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
-  `uraianpengeluaran` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `keteranganperjalanan` varchar(80) COLLATE utf8mb4_general_ci NOT NULL,
-  `harian` varchar(5) COLLATE utf8mb4_general_ci NOT NULL,
-  `satuanharian` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `transport` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
-  `subdana` varchar(5) COLLATE utf8mb4_general_ci NOT NULL,
-  `tp1` varchar(2) COLLATE utf8mb4_general_ci NOT NULL,
-  `satuan1` varchar(12) COLLATE utf8mb4_general_ci NOT NULL,
-  `kettp1` text COLLATE utf8mb4_general_ci NOT NULL,
-  `tp2` varchar(2) COLLATE utf8mb4_general_ci NOT NULL,
-  `satuan2` varchar(12) COLLATE utf8mb4_general_ci NOT NULL,
-  `kettp2` varchar(80) COLLATE utf8mb4_general_ci NOT NULL,
-  `tp3` varchar(2) COLLATE utf8mb4_general_ci NOT NULL,
-  `satuan3` varchar(12) COLLATE utf8mb4_general_ci NOT NULL,
-  `kettp3` varchar(80) COLLATE utf8mb4_general_ci NOT NULL,
-  `tp4` varchar(2) COLLATE utf8mb4_general_ci NOT NULL,
-  `satuan4` varchar(12) COLLATE utf8mb4_general_ci NOT NULL,
-  `kettp4` varchar(80) COLLATE utf8mb4_general_ci NOT NULL,
-  `tp5` varchar(2) COLLATE utf8mb4_general_ci NOT NULL,
-  `satuan5` varchar(12) COLLATE utf8mb4_general_ci NOT NULL,
-  `kettp5` varchar(80) COLLATE utf8mb4_general_ci NOT NULL,
-  `keteranganbbm` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `liter` varchar(13) COLLATE utf8mb4_general_ci NOT NULL,
-  `hargaliter` varchar(6) COLLATE utf8mb4_general_ci NOT NULL,
-  `keteranganliter` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `ketpen1` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
-  `satuanpen1` varchar(13) COLLATE utf8mb4_general_ci NOT NULL,
-  `hargapen1` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `keteranganpen11` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `hotel1` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `addon1` enum('ya','tidak') COLLATE utf8mb4_general_ci NOT NULL,
+  `nosppd` varchar(70) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tanggalspd` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tanggalkwt` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `uraianpengeluaran` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `keteranganperjalanan` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `harian` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `satuanharian` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `transport` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `subdana` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tp1` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `satuan1` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `kettp1` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tp2` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `satuan2` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `kettp2` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tp3` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `satuan3` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `kettp3` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tp4` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `satuan4` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `kettp4` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tp5` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `satuan5` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `kettp5` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `keteranganbbm` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `liter` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `hargaliter` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `keteranganliter` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `ketpen1` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `satuanpen1` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `hargapen1` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `keteranganpen11` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `hotel1` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `addon1` enum('ya','tidak') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `ketpen2` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `satuanpen2` varchar(12) COLLATE utf8mb4_general_ci NOT NULL,
-  `hargapen2` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
-  `hotel2` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `addon2` enum('ya','tidak') COLLATE utf8mb4_general_ci NOT NULL
+  `satuanpen2` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `hargapen2` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `hotel2` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `addon2` enum('ya','tidak') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -136,8 +136,8 @@ CREATE TABLE `kwitansi` (
 --
 
 INSERT INTO `kwitansi` (`idkwitansi`, `nosppd`, `tanggalspd`, `tanggalkwt`, `uraianpengeluaran`, `keteranganperjalanan`, `harian`, `satuanharian`, `transport`, `subdana`, `tp1`, `satuan1`, `kettp1`, `tp2`, `satuan2`, `kettp2`, `tp3`, `satuan3`, `kettp3`, `tp4`, `satuan4`, `kettp4`, `tp5`, `satuan5`, `kettp5`, `keteranganbbm`, `liter`, `hargaliter`, `keteranganliter`, `ketpen1`, `satuanpen1`, `hargapen1`, `keteranganpen11`, `hotel1`, `addon1`, `ketpen2`, `satuanpen2`, `hargapen2`, `hotel2`, `addon2`) VALUES
-(1, '111/Dishut-1.1/XI/2023', '13 Maret 2024', '2024-05-01', 'Perjalanan Dinas Biasa', 'uang harian pada asn', '2', '370000', 'umum', 'APBN', '1', '70000', 'Tiket jambi - kerinci', '2', '120000', 'Tiket jambi - kerinci', '', '', '', '', '', '', '', '', '', 'Mobil Dinas Bh xxxx BBM Pertalite', '100', '14500', '', 'penginapan 1 malam di kerinci', '1', '370000', '', 'hotel 1', 'ya', 'penginapan 1 malam di kerinci', '1', '500000', 'hotel2', 'tidak'),
-(2, '121/dishut/2024', '14 maret 2024', '2024-05-01', 'Perjalanan Dinas Biasa', 'uang harian pada non asn', '1', '370000', 'umum', '', '1', '70000', 'Tiket jambi - kerinci', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'penginapan 1 malam di kerinci', '1', '450000', '', '0', 'ya', 'penginapan 1 malam di kerinci', '1', '400000', '0', 'ya');
+(1, '111/Dishut-1.1/XI/2023', '13 Maret 2024', '2024-05-03', 'Perjalanan Dinas Biasa', 'uang harian pada asn', '2', '370000', 'umum', 'APBN', '1', '70000', 'Tiket jambi - kerinci', '2', '120000', 'Tiket jambi - kerinci', '', '', '', '', '', '', '', '', '', 'Mobil Dinas Bh xxxx BBM Pertalite', '100', '14500', '', 'penginapan 1 malam di kerinci', '1', '370000', '', 'hotel 1', 'ya', 'penginapan 2 malam di kerinci', '1', '500000', 'hotel2', 'tidak'),
+(2, '121/dishut/2024', '14 maret 2024', '2024-05-03', 'Perjalanan Dinas Biasa', 'uang harian pada non asn', '1', '370000', 'dinas', '', '1', '70000', 'Tiket jambi - kerinci', '', '', '', '', '', '', '', '', '', '', '', '', 'Mobil Dinas A', '30', '1000000', '', 'penginapan 1 malam di kerinci', '1', '450000', '', '', 'ya', '', '', '', '', 'tidak');
 
 -- --------------------------------------------------------
 
@@ -147,12 +147,12 @@ INSERT INTO `kwitansi` (`idkwitansi`, `nosppd`, `tanggalspd`, `tanggalkwt`, `ura
 
 CREATE TABLE `laporan` (
   `idlaporan` int NOT NULL,
-  `nosurat` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `nosurat` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `tanggal` date NOT NULL,
-  `dari` varchar(60) COLLATE utf8mb4_general_ci NOT NULL,
-  `perihal` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `isi` varchar(350) COLLATE utf8mb4_general_ci NOT NULL,
-  `nama` varchar(100) COLLATE utf8mb4_general_ci NOT NULL
+  `dari` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `perihal` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `isi` varchar(350) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nama` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -171,30 +171,30 @@ INSERT INTO `laporan` (`idlaporan`, `nosurat`, `tanggal`, `dari`, `perihal`, `is
 
 CREATE TABLE `listsppd` (
   `idsppd` int NOT NULL,
-  `nosurat` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `nama` varchar(60) COLLATE utf8mb4_general_ci NOT NULL,
+  `nosurat` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nama` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `tanggal` date NOT NULL,
-  `nip` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `pangkat` varchar(25) COLLATE utf8mb4_general_ci NOT NULL,
-  `jabatan` varchar(60) COLLATE utf8mb4_general_ci NOT NULL,
-  `bidang` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `nip` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `pangkat` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `jabatan` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `bidang` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `idpegawai` int NOT NULL,
-  `golongan` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `tujuan` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
-  `tingkatgolongan` varchar(2) COLLATE utf8mb4_general_ci NOT NULL,
-  `dalamrangka` varchar(300) COLLATE utf8mb4_general_ci NOT NULL,
-  `kendaraan` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `tempatasal` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `tujuanpelaksanaan` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `golongan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tujuan` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tingkatgolongan` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `dalamrangka` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `kendaraan` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tempatasal` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tujuanpelaksanaan` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `tgglpelaksana` date NOT NULL,
   `tanggalkembali` date NOT NULL,
-  `totalpelaksanaan` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
-  `subkegiatan` varchar(350) COLLATE utf8mb4_general_ci NOT NULL,
-  `instansi` varchar(60) COLLATE utf8mb4_general_ci NOT NULL,
-  `norek` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `pptk` varchar(60) COLLATE utf8mb4_general_ci NOT NULL,
-  `pangkatpptk` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `nippptk` varchar(20) COLLATE utf8mb4_general_ci NOT NULL
+  `totalpelaksanaan` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `subkegiatan` varchar(350) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `instansi` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `norek` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `pptk` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `pangkatpptk` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nippptk` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -218,9 +218,9 @@ INSERT INTO `listsppd` (`idsppd`, `nosurat`, `nama`, `tanggal`, `nip`, `pangkat`
 
 CREATE TABLE `userlogin` (
   `iduser` int NOT NULL,
-  `username` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `level` enum('ADMIN','OPERATOR','KEPALA','') COLLATE utf8mb4_general_ci NOT NULL
+  `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `level` enum('ADMIN','OPERATOR','KEPALA','') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -292,7 +292,7 @@ ALTER TABLE `kegiatan`
 -- AUTO_INCREMENT for table `kwitansi`
 --
 ALTER TABLE `kwitansi`
-  MODIFY `idkwitansi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idkwitansi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `laporan`
