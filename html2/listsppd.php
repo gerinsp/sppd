@@ -87,6 +87,34 @@ if (mysqli_num_rows($result) > 0) {
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
    
     <script src="../assets/js/config.js"></script>
+      <style>
+          ul {
+              list-style: none;
+              padding-left: 10px;
+          }
+          .list-tambah,
+          .list-pptk-tambah,
+          [class^="list-edit-"],
+          [class^="list-pptk-edit-"] {
+              width: 100%;
+              background-color: #ffffff;
+              border-radius: 0 0 5px 5px;
+              border: 1px solid lightgrey;
+              display: none;
+          }
+          .list-items-tambah,
+          .list-items-pptk-tambah,
+          [class^="list-items-edit-"],
+          [class^="list-items-pptk-edit-"] {
+              padding: 10px 5px;
+          }
+          .list-items-tambah:hover,
+          .list-items-pptk-tambah:hover,
+          [class^="list-items-edit-"]:hover,
+          [class^="list-items-pptk-edit-"]:hover{
+              background-color: #dddddd;
+          }
+      </style>
   </head>
 
   <body>
@@ -373,7 +401,7 @@ if (mysqli_num_rows($result) > 0) {
                         if ($counter % 10 == 1) {
                         
                       ?>
-                        <a href="cetak2.php?idsppd=<?= $isi['idsppd'] ?>" name="cari" type="button" class="btn btn-success"  >Cetak Data</a>
+                        <a href="generate_word.php?idsppd=<?= $isi['idsppd'] ?>" name="cari" type="button" class="btn btn-success">Cetak Data</a>
                       <?php
                         }
                         }
@@ -423,33 +451,32 @@ if (mysqli_num_rows($result) > 0) {
                                   <div class="row">
                                   <div class="mb-2">
                                     <label for="nama" class="form-label">Nama</label>
-                                    <input name="nama" type="text" id="nama" class="form-control" placeholder="Masukan NAMA" autocomplete="TRUE"/>
-                                     
-                                    
+                                    <input name="nama" type="text" id="nama-tambah" class="form-control nama-tambah" placeholder="Masukan NAMA" autocomplete=""/>
+                                      <ul class="list-tambah"></ul>
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="nip"  class="form-label">NIP</label>
-                                    <input name="nip" type="text" id="nip" class="form-control" placeholder="Masukan NIP" />
+                                    <input name="nip" type="text" id="nip-tambah" class="form-control nip-tambah" placeholder="Masukan NIP" />
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="pangkat" class="form-label">Pangkat</label>
-                                    <input name="pangkat" type="text" id="pangkat" class="form-control" placeholder="Masukan Pangkat" />
+                                    <input name="pangkat" type="text" id="pangkat-tambah" class="form-control pangkat-tambah" placeholder="Masukan Pangkat" />
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="jabatan" class="form-label">Jabatan</label>
-                                    <input name="jabatan" type="text" id="jabatan" class="form-control" placeholder="Nama Jabatan" />
+                                    <input name="jabatan" type="text" id="jabatan-tambah" class="form-control jabatan-tambah" placeholder="Nama Jabatan" />
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label  class="form-label">Bidang</label>
-                                    <input name="bidang" type="text" id="bidang" class="form-control" placeholder="Nama Bidang" />
+                                    <input name="bidang" type="text" id="bidang-tambah" class="form-control bidang-tambah" placeholder="Nama Bidang" />
                                   </div>
                                 </div>
                                 
@@ -504,15 +531,15 @@ if (mysqli_num_rows($result) > 0) {
                                 <div class="row">
                                   <div class="col mb-2">
                                   <label for="subkegiatan" class="form-label">Sub Kegiatan</label>
-                                    <select name="subkegiatan" type="text" class="form-select" value="<?= $isi['subkegiatan']; ?>"
-                                      id="autocompleteSelect" aria-label="Default select example" >
+                                    <select name="subkegiatan" type="text" class="form-select subkegiatan"
+                                      id="subkegiatan" onchange="setNorek(this, 'norek-tambah')" aria-label="Default select example" >
                                       <option selected disabled >PILIH NAMA</option>
                                       <?php
                                       include "koneksi.php";
                                       $query = mysqli_query($koneksi, "SELECT * FROM kegiatan") or die(mysqli_error($koneksi));
                                      
                                       while ($data = mysqli_fetch_array($query)) {
-                                          echo "<option value='$data[namakegiatan]'>$data[namakegiatan]</option>";
+                                          echo "<option data-norek='$data[norek]' value='$data[namakegiatan]'>$data[namakegiatan]</option>";
                                           
                                       }
                                      
@@ -531,8 +558,8 @@ if (mysqli_num_rows($result) > 0) {
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="norek" class="form-label">Kode Anggaran</label>
-                                    <input name="norek" type="text" id="selectedItem" class="form-control" placeholder="Kode Rekening" />
-                                    <?php 
+                                    <input name="norek" type="text" id="norek" class="form-control norek-tambah" placeholder="Kode Rekening" />
+                                    <?php
                                     if(isset($_POST['subkegiatan'])){
                                       $query = mysqli_query($koneksi, "SELECT * FROM kegiatan") or die(mysqli_error($koneksi));
                                       $res = $query->fetch_assoc();?>
@@ -545,19 +572,20 @@ if (mysqli_num_rows($result) > 0) {
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="pptk" class="form-label">PPTK</label>
-                                    <input name="pptk" type="text" id="pptk" class="form-control" placeholder="Nama PPTK" />
+                                    <input name="pptk" type="text" id="pptk-tambah" class="form-control pptk-tambah" placeholder="Nama PPTK" />
+                                      <ul class="list-pptk-tambah"></ul>
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="nippptk" class="form-label">NIP</label>
-                                    <input name="nippptk" type="text" id="nippptk" class="form-control" placeholder="NIP" />
+                                    <input name="nippptk" type="text" id="nippptk-tambah" class="form-control nippptk-tambah" placeholder="NIP" />
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="pangkatpptk" class="form-label">Pangkat</label>
-                                    <input name="pangkatpptk" type="text" id="pangkatpptk" class="form-control" placeholder="Pangkat" />
+                                    <input name="pangkatpptk" type="text" id="pangkatpptk-tambah" class="form-control pangkatpptkt-tambah" placeholder="Pangkat" />
                                   </div>
                                  
                                       <!--tag JS  -->
@@ -568,7 +596,7 @@ if (mysqli_num_rows($result) > 0) {
 
                                     if (isset($_POST['simpan'])) {
                                       $nosurat = $_POST['nosurat'];
-                                      $tanggal =  $_POST['tanggal'];
+                                      $tanggal =  ($_POST['tanggal'] != '') ? $_POST['tanggal'] : date('Y-m-d');
                                       $nama = $_POST['nama'];
                                       $nip = $_POST['nip'];
                                       $pangkat = $_POST['pangkat'];
@@ -579,8 +607,8 @@ if (mysqli_num_rows($result) > 0) {
                                       $kendaraan = $_POST['kendaraan'];
                                       $tempatasal = $_POST['tempatasal'];
                                       $tujuanpelaksanaan = $_POST['tujuanpelaksanaan'];
-                                      $tgglpelaksana = $_POST['tgglpelaksana'];
-                                      $tanggalkembali = $_POST['tanggalkembali'];
+                                      $tgglpelaksana = ($_POST['tgglpelaksana'] != '') ? $_POST['tgglpelaksana'] : date('Y-m-d');
+                                      $tanggalkembali = ($_POST['tanggalkembali'] != '') ? $_POST['tanggalkembali'] : date('Y-m-d');
                                       $totalpelaksanaan = $_POST['totalpelaksanaan'];
                                       $subkegiatan = $_POST['subkegiatan'];
                                       $instansi = $_POST['instansi'];
@@ -609,31 +637,31 @@ if (mysqli_num_rows($result) > 0) {
                               </form> 
                              <!-- autofill nama -->
                              <script>
-                                      function autoFillNip() {
-                                        const namaInput = document.getElementById('nama');
-                                        const nipInput = document.getElementById('nip');
-                                        const pangkatInput = document.getElementById('pangkat');
-                                        const jabatanInput = document.getElementById('jabatan');
-                                        const bidangInput = document.getElementById('bidang');
-
-                                        namaInput.addEventListener('input', function() {
-                                          const enteredName = namaInput.value;
-
-                                          fetch(`ajax.php?nama=${enteredName}`)
-                                            .then(response => response.json())
-                                            .then(data => {
-                                              nipInput.value = data.nip || '';
-                                              pangkatInput.value = data.pangkat || '';
-                                              jabatanInput.value = data.jabatan || '';
-                                              bidangInput.value = data.bidang || '';
-                                            })
-                                            .catch(error => {
-                                              console.error('Error fetching data:', error);
-                                            });
-                                        });
-                                      }
-
-                                      autoFillNip();
+                                      // function autoFillNip() {
+                                      //   const namaInput = document.getElementById('nama');
+                                      //   const nipInput = document.getElementById('nip');
+                                      //   const pangkatInput = document.getElementById('pangkat');
+                                      //   const jabatanInput = document.getElementById('jabatan');
+                                      //   const bidangInput = document.getElementById('bidang');
+                                      //
+                                      //   namaInput.addEventListener('input', function() {
+                                      //     const enteredName = namaInput.value;
+                                      //
+                                      //     fetch(`ajax.php?nama=${enteredName}`)
+                                      //       .then(response => response.json())
+                                      //       .then(data => {
+                                      //         nipInput.value = data.nip || '';
+                                      //         pangkatInput.value = data.pangkat || '';
+                                      //         jabatanInput.value = data.jabatan || '';
+                                      //         bidangInput.value = data.bidang || '';
+                                      //       })
+                                      //       .catch(error => {
+                                      //         console.error('Error fetching data:', error);
+                                      //       });
+                                      //   });
+                                      // }
+                                      //
+                                      // autoFillNip();
 
                                      
                                     </script>    
@@ -641,39 +669,39 @@ if (mysqli_num_rows($result) > 0) {
 
                                    <!--auto kegiatan -->
                                     <script>
-                                      $("#autocompleteSelect").autocomplete({
-                                          serviceUrl: "ajax3.php", // Ganti dengan URL dari file PHP Anda
-                                          onSelect: function(suggestion) {
-                                              $("#selectedItem").text("You selected: " + suggestion.value);
-                                          },
-                                      });
+                                      // $("#autocompleteSelect").autocomplete({
+                                      //     serviceUrl: "ajax3.php", // Ganti dengan URL dari file PHP Anda
+                                      //     onSelect: function(suggestion) {
+                                      //         $("#selectedItem").text("You selected: " + suggestion.value);
+                                      //     },
+                                      // });
                                     </script> 
                                     <!-- akhir --> 
                               <!-- autofill PPTK -->
                               <script>
-                                      function autoFillNip2() {
-                                        const namaInput = document.getElementById('pptk');
-                                        const nipInput = document.getElementById('nippptk');
-                                        const pangkatInput = document.getElementById('pangkatpptk');
-                                       
-
-                                        namaInput.addEventListener('input', function() {
-                                          const enteredName = namaInput.value;
-
-                                          fetch(`ajax2.php?nama=${enteredName}`)
-                                            .then(response => response.json())
-                                            .then(data => {
-                                            // namaInput.value = data.nama|| '';
-                                              nipInput.value = data.nip || '';
-                                              pangkatInput.value = data.pangkat || '';
-                                            })
-                                            .catch(error => {
-                                              console.error('Error fetching data:', error);
-                                            });
-                                        });
-                                      }
-
-                                      autoFillNip2();
+                                      // function autoFillNip2() {
+                                      //   const namaInput = document.getElementById('pptk');
+                                      //   const nipInput = document.getElementById('nippptk');
+                                      //   const pangkatInput = document.getElementById('pangkatpptk');
+                                      //
+                                      //
+                                      //   namaInput.addEventListener('input', function() {
+                                      //     const enteredName = namaInput.value;
+                                      //
+                                      //     fetch(`ajax2.php?nama=${enteredName}`)
+                                      //       .then(response => response.json())
+                                      //       .then(data => {
+                                      //       // namaInput.value = data.nama|| '';
+                                      //         nipInput.value = data.nip || '';
+                                      //         pangkatInput.value = data.pangkat || '';
+                                      //       })
+                                      //       .catch(error => {
+                                      //         console.error('Error fetching data:', error);
+                                      //       });
+                                      //   });
+                                      // }
+                                      //
+                                      // autoFillNip2();
 
                                     </script>    
                                     <!-- akhir autofill -->
@@ -745,7 +773,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                         <td>
                           
                         
-                        <a href="cetak.php?idsppd=<?= $isi['idsppd'] ?>"    class="btn btn-success ">Cetak</a>
+                        <a href="generate_word.php?idsppd=<?= $isi['idsppd'] ?>"    class="btn btn-success ">Cetak</a>
                         <!-- Button trigger edit data modal -->
                       <button
                         type="button"
@@ -760,7 +788,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel1">Edit Data Pegawai</h5>
+                              <h5 class="modal-title" id="exampleModalLabel1">Edit Data SPPD</h5>
                               <button
                                 type="button"
                                 class="btn-close"
@@ -787,45 +815,32 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                   <div class="row">
                                   <div class="mb-2">
                                     <label for="nama" class="form-label">Nama</label>
-                                    <input name="nama" type="text" id="nama" value="<?= $isi['nama']; ?>" class="form-control" placeholder="Masukan NIP" />
-                                     <!-- <select name="nama" onchange="isi_otomatis()" class="form-select" id="nama" aria-label="Default select example" required autofocus>
-                                      <option selected disabled>PILIH NAMA</option> 
-                                       
-
-                                    //  include "koneksi.php";
-                                    //  $query = mysqli_query($koneksi, "SELECT * FROM data_pegawai") or die(mysqli_error($koneksi));
-                                    //  while($data = mysqli_fetch_array($query)){
-                                    //   echo"<option value=$data[nama]> $data[nama]</option>";
-                                    //  }
-                                     
-                                     
-                                     
-                                    </select>
-                                     -->
+                                    <input name="nama" onclick="setAutoFill('edit-<?= $isi['idsppd'] ?>')" type="text" id="nama-edit-<?= $isi['idsppd'] ?>" value="<?= $isi['nama']; ?>" class="form-control nama-edit" placeholder="Masukan NIP" />
+                                     <ul class="list-edit-<?= $isi['idsppd'] ?>"></ul>
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="nip"  class="form-label">NIP</label>
-                                    <input name="nip" type="text" id="nip" value="<?= $isi['nip']; ?>" class="form-control" placeholder="Masukan NIP" />
+                                    <input name="nip" type="text" id="nip-edit-<?= $isi['idsppd'] ?>" value="<?= $isi['nip']; ?>" class="form-control nip-edit" placeholder="Masukan NIP" />
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="pangkat" class="form-label">Pangkat</label>
-                                    <input name="pangkat" type="text" id="pangkat" value="<?= $isi['pangkat']; ?>" class="form-control" placeholder="Masukan Pangkat" />
+                                    <input name="pangkat" type="text" id="pangkat-edit-<?= $isi['idsppd'] ?>" value="<?= $isi['pangkat']; ?>" class="form-control pangkat-edit" placeholder="Masukan Pangkat" />
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="jabatan" class="form-label">Jabatan</label>
-                                    <input name="jabatan" type="text" id="jabatan" value="<?= $isi['jabatan']; ?>" class="form-control" placeholder="Nama Jabatan" />
+                                    <input name="jabatan" type="text" id="jabatan-edit-<?= $isi['idsppd'] ?>" value="<?= $isi['jabatan']; ?>" class="form-control jabatan-edit" placeholder="Nama Jabatan" />
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="bidang" class="form-label">Bidang</label>
-                                    <input name="bidang" type="text" id="bidang" value="<?= $isi['bidang']; ?>" class="form-control" placeholder="Nama Jabatan" />
+                                    <input name="bidang" type="text" id="bidang-edit-<?= $isi['idsppd'] ?>" value="<?= $isi['bidang']; ?>" class="form-control bidang-edit" placeholder="Nama Jabatan" />
                                   </div>
                                 </div>
                                 
@@ -838,7 +853,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="dalamrangka"  class="form-label">Dalam Rangka</label>
-                                    <textarea class="form-control" type="text" name="dalamrangka" value="<?= $isi['dalamrangka']; ?>" id="dalamrangka" rows="3"></textarea>
+                                    <textarea class="form-control" type="text" name="dalamrangka" id="dalamrangka" rows="3"><?= $isi['dalamrangka']; ?></textarea>
                                     
                                   </div>
                                 </div>
@@ -882,14 +897,14 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                   <div class="col mb-2">
                                     <label for="subkegiatan"  class="form-label">Sub Kegiatan</label>
                                     
-                                    <select name="subkegiatan" onchange="isi_otomatis()" class="form-select" value="<?= $isi['subkegiatan']; ?>" id="subkegiatan" aria-label="Default select example" required autofocus>
+                                    <select name="subkegiatan" onchange="setNorek(this, 'norek-edit-<?= $isi['idsppd'] ?>')" class="form-select" id="subkegiatan" aria-label="Default select example" required autofocus>
                                       <option selected disabled>PILIH NAMA</option> 
                                        
                                       <?php
                                       include "koneksi.php";
                                       $query = mysqli_query($koneksi, "SELECT * FROM kegiatan") or die(mysqli_error($koneksi));
                                       while ($data = mysqli_fetch_array($query)) {
-                                        echo "<option value=$data[namakegiatan]> $data[namakegiatan]</option>";
+                                        echo "<option data-norek='$data[norek]' value=$data[namakegiatan]> $data[namakegiatan]</option>";
                                       }
 
                                       ?>
@@ -909,25 +924,26 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="norek" class="form-label">Kode Anggaran</label>
-                                    <input name="norek" type="text" id="norek" value="<?= $isi['norek']; ?>" class="form-control" placeholder="Nama Jabatan" />
+                                    <input name="norek" type="text" id="norek" value="<?= $isi['norek']; ?>" class="form-control norek-edit-<?= $isi['idsppd'] ?>" placeholder="Nama Jabatan" />
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="pptk" class="form-label">PPTK</label>
-                                    <input name="pptk" type="text" id="pptk" value="<?= $isi['pptk']; ?>" class="form-control" placeholder="Nama Jabatan" />
+                                    <input name="pptk" type="text" onclick="setAutoFillPPTK('edit-<?= $isi['idsppd'] ?>')" id="pptk-edit-<?= $isi['idsppd'] ?>" value="<?= $isi['pptk']; ?>" class="form-control pptk-edit" placeholder="Nama Jabatan" />
+                                    <ul class="list-pptk-edit-<?= $isi['idsppd'] ?>"></ul>
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="nippptk" class="form-label">NIP</label>
-                                    <input name="nippptk" type="text" id="nippptk" value="<?= $isi['nippptk']; ?>" class="form-control" placeholder="Nama Jabatan" />
+                                    <input name="nippptk" type="text" id="nippptk-edit-<?= $isi['idsppd'] ?>" value="<?= $isi['nippptk']; ?>" class="form-control nippptk-edit" placeholder="Nama Jabatan" />
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="pangkatpptk" class="form-label">Pangkat</label>
-                                    <input name="pangkatpptk" type="text" id="pangkatpptk" value="<?= $isi['pangkatpptk']; ?>" class="form-control" placeholder="Nama Jabatan" />
+                                    <input name="pangkatpptk" type="text" id="pangkatpptk-edit-<?= $isi['idsppd'] ?>" value="<?= $isi['pangkatpptk']; ?>" class="form-control pangkatpptk-edit" placeholder="Nama Jabatan" />
                                   </div>
                                 
                               <!-- koneksi edit data  -->
@@ -1014,11 +1030,16 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                         <!-- Masuk Hapus Pegawai -->
                         
                         <a href="hapussppd.php?idsppd=<?= $isi['idsppd'] ?>" onclick="return confirm('Apakah Nama Pegawai ini Mau di Hapus?')"   class="btn btn-danger">Hapus</a>
-                        
-                      </div>
+                        <a style="color: white" onclick="updateStatusSPPD('<?= $isi['idsppd'] ?>')" class="btn btn-<?= ($isi['status'] == 0) ? 'warning' : 'success' ?>">
+                        <?= ($isi['status'] == 0) ? 'Menunggu Persetujuan' : 'Disetujui' ?>
+                    </a>
+
+                </div>
                       </td>
                         <td><?php echo $isi['nosurat']; ?></td>
-                        <td><?php echo $isi['tanggal']; ?></td>
+                        <td><?php
+                            echo date("j F Y", strtotime($isi['tanggal']));
+                            ?></td>
                         <td><?php echo $isi['nama']; ?></td>
                         <td><?php echo $isi['nip']; ?></td>
                         <td><?php echo $isi['pangkat']; ?></td>
@@ -1132,9 +1153,185 @@ while ($isi = mysqli_fetch_array($panggildata)) {
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <!-- Page JS -->
     <script src="../assets/js/dashboards-analytics.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
     
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <?php
+    $sql = "SELECT * FROM data_pegawai";
+    $result = mysqli_query($koneksi, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        $nama = [];
+
+        while ($data = mysqli_fetch_assoc($result)) {
+            $nama[$data['idpegawai']] = [
+                'nama' => $data['nama'],
+                'nip' => $data['nip'],
+                'pangkat' => $data['pangkat'],
+                'jabatan' => $data['jabatan'],
+                'bidang' => $data['bidang']
+            ];
+        }
+    }
+    ?>
+
+    <script>
+        let names = <?= json_encode($nama, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+        console.log(names)
+        //Sort names in ascending order
+        // let sortedNames = names.sort();
+
+        //reference
+        function setAutoFill(id) {
+            let input = document.getElementById("nama-"+id);
+
+            //Execute function on keyup
+            input.addEventListener("keyup", (e) => {
+                const list = document.querySelector('.list-'+id)
+                if (input.value == '') {
+                    list.style.display = 'none'
+                } else {
+                    list.style.display = 'block'
+                }
+                //loop through above array
+                //Initially remove all elements ( so if user erases a letter or adds new letter then clean previous outputs)
+                removeElements(id);
+                for (let i in names) {
+                    //convert input to lowercase and compare with each string
+
+                    if (
+                        names[i]['nama'].toLowerCase().startsWith(input.value.toLowerCase()) &&
+                        input.value != ""
+                    ) {
+                        //create li element
+                        let listItem = document.createElement("li");
+                        //One common class name
+                        listItem.classList.add("list-items-"+id);
+                        listItem.style.cursor = "pointer";
+                        listItem.setAttribute("onclick", "displayNames('" + names[i]['nama'] + "', '" + i + "', '" + id + "')");
+                        //Display matched part in bold
+                        let word = "<b>" + names[i]['nama'].substr(0, input.value.length) + "</b>";
+                        word += names[i]['nama'].substr(input.value.length);
+                        //display the value in array
+                        listItem.innerHTML = word;
+                        document.querySelector(".list-"+id).appendChild(listItem);
+                    }
+                }
+            });
+        }
+        function displayNames(value, i, id) {
+            const nip = document.getElementById('nip-'+id)
+            const pangkat = document.getElementById('pangkat-'+id)
+            const jabatan = document.getElementById('jabatan-'+id)
+            const bidang = document.getElementById('bidang-'+id)
+            const nama = document.getElementById('nama-'+id)
+            document.querySelector('.list-'+id).style.display = 'none'
+            nip.value = names[i]['nip']
+            pangkat.value = names[i]['pangkat']
+            jabatan.value = names[i]['jabatan']
+            bidang.value = names[i]['bidang']
+            nama.value = value;
+            removeElements(id);
+        }
+        function removeElements(id) {
+            //clear all the item
+            let items = document.querySelectorAll(".list-items-"+id);
+            items.forEach((item) => {
+                item.remove();
+            });
+        }
+        setAutoFill('tambah')
+        // setAutoFill(names, 'edit')
+
+        //pptk
+        function setAutoFillPPTK(id) {
+            let pptk = document.getElementById("pptk-"+id);
+
+            //Execute function on keyup
+            pptk.addEventListener("keyup", (e) => {
+                const list = document.querySelector('.list-pptk-'+id)
+                if (pptk.value == '') {
+                    list.style.display = 'none'
+                } else {
+                    list.style.display = 'block'
+                }
+                //loop through above array
+                //Initially remove all elements ( so if user erases a letter or adds new letter then clean previous outputs)
+                removeElementsPPTK(id);
+                for (let i in names) {
+                    //convert pptk to lowercase and compare with each string
+
+                    if (
+                        names[i]['nama'].toLowerCase().startsWith(pptk.value.toLowerCase()) &&
+                        pptk.value != ""
+                    ) {
+                        //create li element
+                        let listItem = document.createElement("li");
+                        //One common class name
+                        listItem.classList.add("list-items-pptk-"+id);
+                        listItem.style.cursor = "pointer";
+                        listItem.setAttribute("onclick", "displayNamesPPTK('" + names[i]['nama'] + "', '" + i + "', '" + id + "')");
+                        //Display matched part in bold
+                        let word = "<b>" + names[i]['nama'].substr(0, pptk.value.length) + "</b>";
+                        word += names[i]['nama'].substr(pptk.value.length);
+                        //display the value in array
+                        listItem.innerHTML = word;
+                        document.querySelector(".list-pptk-"+id).appendChild(listItem);
+                    }
+                }
+            });
+        }
+        function displayNamesPPTK(value, i, id) {
+            const nippptk = document.getElementById('nippptk-'+id)
+            const pangkatpptk = document.getElementById('pangkatpptk-'+id)
+            const pptk = document.getElementById('pptk-'+id)
+
+            document.querySelector('.list-pptk-'+id).style.display = 'none'
+            nippptk.value = names[i]['nip']
+            pangkatpptk.value = names[i]['pangkat']
+            pptk.value = value;
+            removeElementsPPTK(id);
+        }
+        function removeElementsPPTK(id) {
+            //clear all the item
+            let items = document.querySelectorAll(".list-items-pptk-"+id);
+            items.forEach((item) => {
+                item.remove();
+            });
+        }
+        setAutoFillPPTK('tambah')
+        // setAutoFillPPTK(names, 'edit')
+
+        function setNorek(selectElement, elem) {
+            let selectedOption = selectElement.options[selectElement.selectedIndex];
+
+            let norek = selectedOption.getAttribute('data-norek');
+            document.querySelector(`.${elem}`).value = norek
+        }
+        
+        function updateStatusSPPD(id_sppd) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'updatestatus_sppd.php?idsppd='+id_sppd, true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    var message = response.message;
+                    var status = response.status;
+
+                    // Tampilkan SweetAlert berdasarkan data yang diterima
+                    Swal.fire({
+                        icon: status,
+                        title: 'Status',
+                        text: message
+                    }).then(function() {
+                        window.location.href = 'listsppd.php';
+                    });
+                }
+            };
+            xhr.send();
+        }
+    </script>
   </body>
 </html>

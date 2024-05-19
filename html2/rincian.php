@@ -473,7 +473,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                         class="btn btn-primary"
                         data-bs-toggle="modal"
                         data-bs-target="#editkategori<?= $isi['idkwitansi']; ?>"
-                        onclick="resetHarga()"
+                        onclick="resetHarga('transport-wrapper-<?= $isi['idkwitansi'] ?>', 'kend-dinas-wrapper-<?= $isi['idkwitansi'] ?>', 'transport-<?= $isi['idkwitansi'] ?>')"
                       >
                         Edit
                       </button>
@@ -548,7 +548,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                 <div class="row mb-4">
                                   <label class="col-sm-2 col-form-label" for="basic-default-name">Transport</label>
                                   <div class="col-sm-2">
-                                  <select name="transport" onchange="setTransport(this, 'kend-dinas-wrapper-<?= $isi['idkwitansi'] ?>', 'transport-wrapper-<?= $isi['idkwitansi'] ?>')" type="text" class="form-select"
+                                  <select name="transport" id="transport-<?= $isi['idkwitansi'] ?>" onchange="setTransport(this, 'kend-dinas-wrapper-<?= $isi['idkwitansi'] ?>', 'transport-wrapper-<?= $isi['idkwitansi'] ?>')" type="text" class="form-select"
                                       id="autocompleteSelect" aria-label="Default select example" >
                                       <?php if($isi['transport'] == 'umum') { ?>
                                       <option value="umum" selected>Kendaraan Umum</option>
@@ -975,10 +975,6 @@ while ($isi = mysqli_fetch_array($panggildata)) {
     <!-- <script type="text/javascript" src="js/script.js"></script> -->
 
     <script>
-        const dinas = document.querySelectorAll('.kend-dinas');
-        dinas.forEach(item => {
-            item.style.display = 'none';
-        });
         function setTransport(target_el, dinas, umum) {
             const kendUmum = document.getElementById(umum)
             const kendDinas = document.getElementById(dinas)
@@ -1024,9 +1020,19 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                 hargaAwal2 = harga.value
             }
         }
-        function resetHarga() {
+        function resetHarga(umum, dinas, transport) {
             hargaAwal1 = undefined
             hargaAwal2 = undefined
+
+            const kendUmum = document.getElementById(umum)
+            const kendDinas = document.getElementById(dinas)
+            const selectTransport = document.getElementById(transport)
+            if (selectTransport.value == 'umum') {
+                kendDinas.style.display = 'none';
+            }
+            if (selectTransport.value == 'dinas') {
+                kendUmum.style.display = 'none';
+            }
         }
         // const btnSimpan = document.getElementById('simpan')
         // btnSimpan.addEventListener('click', () => window.open('generate_kwitansi.php', '_blank'))
