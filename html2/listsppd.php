@@ -94,8 +94,10 @@ if (mysqli_num_rows($result) > 0) {
           }
           .list-tambah,
           .list-pptk-tambah,
+          .list-sub-tambah,
           [class^="list-edit-"],
-          [class^="list-pptk-edit-"] {
+          [class^="list-pptk-edit-"],
+          [class^="list-sub-edit-"] {
               width: 100%;
               background-color: #ffffff;
               border-radius: 0 0 5px 5px;
@@ -104,14 +106,18 @@ if (mysqli_num_rows($result) > 0) {
           }
           .list-items-tambah,
           .list-items-pptk-tambah,
+          .list-items-sub-tambah,
           [class^="list-items-edit-"],
-          [class^="list-items-pptk-edit-"] {
+          [class^="list-items-pptk-edit-"],
+          [class^="list-items-sub-edit-"] {
               padding: 10px 5px;
           }
           .list-items-tambah:hover,
           .list-items-pptk-tambah:hover,
+          .list-items-sub-tambah:hover,
           [class^="list-items-edit-"]:hover,
-          [class^="list-items-pptk-edit-"]:hover{
+          [class^="list-items-pptk-edit-"]:hover,
+          [class^="list-items-sub-edit-"]:hover {
               background-color: #dddddd;
           }
       </style>
@@ -530,22 +536,9 @@ if (mysqli_num_rows($result) > 0) {
                                 </div>
                                 <div class="row">
                                   <div class="col mb-2">
-                                  <label for="subkegiatan" class="form-label">Sub Kegiatan</label>
-                                    <select name="subkegiatan" type="text" class="form-select subkegiatan"
-                                      id="subkegiatan" onchange="setNorek(this, 'norek-tambah')" aria-label="Default select example" >
-                                      <option selected disabled >PILIH NAMA</option>
-                                      <?php
-                                      include "koneksi.php";
-                                      $query = mysqli_query($koneksi, "SELECT * FROM kegiatan") or die(mysqli_error($koneksi));
-                                     
-                                      while ($data = mysqli_fetch_array($query)) {
-                                          echo "<option data-norek='$data[norek]' value='$data[namakegiatan]'>$data[namakegiatan]</option>";
-                                          
-                                      }
-                                     
-                                      ?>
-                                    </select>
-                                     
+                                      <label for="subkegiatan" class="form-label">Sub Kegiatan</label>
+                                      <input type="text" name="subkegiatan" id="subkegiatan-tambah" class="form-control" placeholder="Sub Kegiatan" />
+                                      <ul style="overflow: auto" class="list-sub-tambah"></ul>
                                   </div>
                                 </div>
                                 
@@ -558,7 +551,7 @@ if (mysqli_num_rows($result) > 0) {
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="norek" class="form-label">Kode Anggaran</label>
-                                    <input name="norek" type="text" id="norek" class="form-control norek-tambah" placeholder="Kode Rekening" />
+                                    <input name="norek" type="text" id="norek-tambah" class="form-control norek-tambah" placeholder="Kode Rekening" />
                                     <?php
                                     if(isset($_POST['subkegiatan'])){
                                       $query = mysqli_query($koneksi, "SELECT * FROM kegiatan") or die(mysqli_error($koneksi));
@@ -895,23 +888,9 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                 </div>
                                 <div class="row">
                                   <div class="col mb-2">
-                                    <label for="subkegiatan"  class="form-label">Sub Kegiatan</label>
-                                    
-                                    <select name="subkegiatan" onchange="setNorek(this, 'norek-edit-<?= $isi['idsppd'] ?>')" class="form-select" id="subkegiatan" aria-label="Default select example" required autofocus>
-                                      <option selected disabled>PILIH NAMA</option> 
-                                       
-                                      <?php
-                                      include "koneksi.php";
-                                      $query = mysqli_query($koneksi, "SELECT * FROM kegiatan") or die(mysqli_error($koneksi));
-                                      while ($data = mysqli_fetch_array($query)) {
-                                        echo "<option data-norek='$data[norek]' value=$data[namakegiatan]> $data[namakegiatan]</option>";
-                                      }
-
-                                      ?>
-                                     
-                                    </select> 
-
-                                    
+                                      <label for="subkegiatan" class="form-label">Sub Kegiatan</label>
+                                      <input type="text" name="subkegiatan" onclick="setAutoFillNorek('edit-<?= $isi['idsppd'] ?>')" id="subkegiatan-edit-<?= $isi['idsppd'] ?>" value="<?= $isi['subkegiatan'] ?>" class="form-control" placeholder="Sub Kegiatan" />
+                                      <ul style="overflow: auto" class="list-sub-edit-<?= $isi['idsppd'] ?>"></ul>
                                   </div>
                                 </div>
                                 
@@ -924,7 +903,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                                 <div class="row">
                                   <div class="col mb-2">
                                     <label for="norek" class="form-label">Kode Anggaran</label>
-                                    <input name="norek" type="text" id="norek" value="<?= $isi['norek']; ?>" class="form-control norek-edit-<?= $isi['idsppd'] ?>" placeholder="Nama Jabatan" />
+                                    <input name="norek" type="text" id="norek-edit-<?= $isi['idsppd'] ?>" value="<?= $isi['norek']; ?>" class="form-control norek-edit-<?= $isi['idsppd'] ?>" placeholder="Nama Jabatan" />
                                   </div>
                                 </div>
                                 <div class="row">
@@ -1030,9 +1009,7 @@ while ($isi = mysqli_fetch_array($panggildata)) {
                         <!-- Masuk Hapus Pegawai -->
                         
                         <a href="hapussppd.php?idsppd=<?= $isi['idsppd'] ?>" onclick="return confirm('Apakah Nama Pegawai ini Mau di Hapus?')"   class="btn btn-danger">Hapus</a>
-                        <a style="color: white" onclick="updateStatusSPPD('<?= $isi['idsppd'] ?>')" class="btn btn-<?= ($isi['status'] == 0) ? 'warning' : 'success' ?>">
-                        <?= ($isi['status'] == 0) ? 'Menunggu Persetujuan' : 'Disetujui' ?>
-                    </a>
+
 
                 </div>
                       </td>
@@ -1175,6 +1152,20 @@ while ($isi = mysqli_fetch_array($panggildata)) {
             ];
         }
     }
+
+    $query_kegiatan = "SELECT * FROM kegiatan";
+    $hasil = mysqli_query($koneksi, $query_kegiatan);
+
+    if (mysqli_num_rows($hasil) > 0) {
+        $kegiatan = [];
+
+        while ($data = mysqli_fetch_assoc($hasil)) {
+            $kegiatan[$data['idkegiatan']] = [
+              'norek' => $data['norek'],
+              'sub_kegiatan' => $data['namakegiatan']
+            ];
+        }
+    }
     ?>
 
     <script>
@@ -1182,6 +1173,8 @@ while ($isi = mysqli_fetch_array($panggildata)) {
         console.log(names)
         //Sort names in ascending order
         // let sortedNames = names.sort();
+        let kegiatan = <?= json_encode($kegiatan, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>;
+        console.log(kegiatan)
 
         //reference
         function setAutoFill(id) {
@@ -1303,6 +1296,61 @@ while ($isi = mysqli_fetch_array($panggildata)) {
         }
         setAutoFillPPTK('tambah')
         // setAutoFillPPTK(names, 'edit')
+
+        function setAutoFillNorek(id) {
+            let input = document.getElementById("subkegiatan-"+id);
+
+            //Execute function on keyup
+            input.addEventListener("keyup", (e) => {
+                const list = document.querySelector('.list-sub-'+id)
+                if (input.value == '') {
+                    list.style.display = 'none'
+                } else {
+                    list.style.display = 'block'
+                }
+                //loop through above array
+                //Initially remove all elements ( so if user erases a letter or adds new letter then clean previous outputs)
+                removeElementsNorek(id);
+                for (let i in kegiatan) {
+                    //convert input to lowercase and compare with each string
+
+                    if (
+                        kegiatan[i]['sub_kegiatan'].toLowerCase().startsWith(input.value.toLowerCase()) &&
+                        input.value != ""
+                    ) {
+                        //create li element
+                        let listItem = document.createElement("li");
+                        //One common class name
+                        listItem.classList.add("list-items-sub-"+id);
+                        listItem.style.cursor = "pointer";
+                        listItem.setAttribute("onclick", "displayNamesNorek('" + kegiatan[i]['sub_kegiatan'] + "', '" + i + "', '" + id + "')");
+                        //Display matched part in bold
+                        let word = "<b>" + kegiatan[i]['sub_kegiatan'].substr(0, input.value.length) + "</b>";
+                        word += kegiatan[i]['sub_kegiatan'].substr(input.value.length);
+                        //display the value in array
+                        listItem.innerHTML = word;
+                        document.querySelector(".list-sub-"+id).appendChild(listItem);
+                    }
+                }
+            });
+        }
+        function displayNamesNorek(value, i, id) {
+            const norek = document.getElementById('norek-'+id)
+            const subkegiatan = document.getElementById('subkegiatan-'+id)
+            document.querySelector('.list-sub-'+id).style.display = 'none'
+            norek.value = kegiatan[i]['norek']
+            subkegiatan.value = value
+            removeElementsNorek(id);
+        }
+        function removeElementsNorek(id) {
+            //clear all the item
+            let items = document.querySelectorAll(".list-items-sub-"+id);
+            items.forEach((item) => {
+                item.remove();
+            });
+        }
+        setAutoFillNorek('tambah')
+
 
         function setNorek(selectElement, elem) {
             let selectedOption = selectElement.options[selectElement.selectedIndex];
